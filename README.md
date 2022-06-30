@@ -63,7 +63,7 @@ COPY --from=build /hello /hello
 CMD ["/hello"]
 ```
 
-Buiild and run it:
+To build and run it:
 
 ```bash
 $ docker build -t c-distroless -f examples/Dockerfile.c .

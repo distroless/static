@@ -17,7 +17,7 @@ This image is also regenerated nightly.
 Here's an example of building a Rust static binary with Docker tooling:
 
 ```
-$ cat Dockerfile
+$ cat examples/Dockerfile.rust
 FROM --platform=x86_64 rust:alpine as build
 
 RUN rustup target add x86_64-unknown-linux-musl
@@ -28,7 +28,7 @@ FROM distroless.dev/static:latest
 
 COPY --from=build /hello /hello
 CMD ["/hello"]
-$ docker build -t rusty-distroless .
+$ docker build -t rusty-distroless --file examples/Dockerfile.rust .
 ...
 $ docker run rusty-distroless
 Hello Distroless
@@ -40,7 +40,7 @@ rusty-distroless   latest    aff4c01fd4f0   6 minutes ago   6.09MB
 And a C program:
 
 ```
-$ cat Dockerfile
+$ cat examples/Dockerfile.c
 # syntax=docker/dockerfile:1.4
 FROM gcc:latest as build
 
@@ -54,7 +54,7 @@ FROM distroless.dev/static:latest
 
 COPY --from=build /hello /hello
 CMD ["/hello"]
-$ docker build -t c-distroless .
+$ docker build -t c-distroless -f examples/Dockerfile.c .
 ...
 $ docker run c-distroless
 Hello Distroless!

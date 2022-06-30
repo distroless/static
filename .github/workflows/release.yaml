@@ -32,6 +32,8 @@ jobs:
       with:
         config: apko.yaml
         base-tag: ghcr.io/${{ github.repository }}
+    - name: Smoke Test
+    - run: test.sh
 
     # Post to slack when things fail.
     - if: ${{ failure() }}

@@ -30,7 +30,10 @@ jobs:
         config: apko.yaml
         tag: static:${{ steps.snapshot-date.outputs.date }}
     - name: Smoke Test
-      run: IMAGE_NAME=${{ steps.apko.outputs.digest }} test.sh
+      run: |
+        docker load output.tar
+        IMAGE_NAME=$(docker load < output.tar | grep "Loaded image" | sed 's/^Loaded image: //')
+        IMAGE_NAME=$IMAGE_NAME ./test.sh
 
     - uses: actions/upload-artifact@v3
       with:

@@ -31,7 +31,6 @@ jobs:
         tag: static:${{ steps.snapshot-date.outputs.date }}
     - name: Smoke Test
       run: |
-        docker load output.tar
         IMAGE_NAME=$(docker load < output.tar | grep "Loaded image" | sed 's/^Loaded image: //')
         IMAGE_NAME=$IMAGE_NAME ./test.sh
 

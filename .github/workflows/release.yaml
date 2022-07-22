@@ -38,6 +38,7 @@ jobs:
         config: apko.yaml
         image_refs: apko.images
         base-tag: ghcr.io/${{ github.repository }}
+        archs: x86_64,aarch64,armv7
 
     - name: Smoke Test
       run: IMAGE_NAME=${{ steps.apko.outputs.digest }} ./test.sh

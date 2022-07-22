@@ -29,6 +29,8 @@ jobs:
       with:
         config: apko.yaml
         tag: static:${{ steps.snapshot-date.outputs.date }}
+        archs: x86_64
+
     - name: Smoke Test
       run: |
         IMAGE_NAME=$(docker load < output.tar | grep "Loaded image" | sed 's/^Loaded image: //')
